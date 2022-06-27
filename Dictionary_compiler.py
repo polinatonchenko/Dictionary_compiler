@@ -1,10 +1,14 @@
 def dictionary_compiler(some_text:str, print_dictionary=False, exception_words=[]):
     '''compiles dict (where the key is a word, the value is the number of repetitions) based on the some_text'''
+    fin_dict = {}
     some_text = some_text.lower()
     changed_text = "".join(c for c in some_text if c.isalpha() or c==" ")
-    print(changed_text)
+    text_list = changed_text.split()
+    fin_dict = dict.fromkeys(text_list, 0)
+    for w in text_list:
+        fin_dict[w] += 1 
+    print(fin_dict)
     return
-
 
 def replace_substrings(some_text:str, substrings_list:list=[], replace = ''):
     '''replace all substrings from substrings_list in some_text'''
