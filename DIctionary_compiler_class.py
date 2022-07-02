@@ -25,7 +25,7 @@ class DictOfWords:
     def eatText(self, someText:str):
         '''collects statistics from semeText'''
         someText = someText.lower()
-        someText = "".join(c for c in someText if c.isalpha() or c==" " else ' ')
+        someText = "".join(c for c in someText if c.isalpha() or c==" ")
         wordsList = someText.split()
         stepDictionary = dict.fromkeys(wordsList, 0)
         for word in wordsList:
