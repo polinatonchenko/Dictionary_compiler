@@ -3,30 +3,9 @@ import json
 
 class DeckOfCards:
 
-    def __init__(self):
-        self.deck = {}
+    def __init__(self, deck={}):
+        self.deck = deck
     
-    # def letsReply(self):
-    #     tempDict = {}
-    #     answer = ''
-    #     for w, v in self.deck.items():
-    #         tempDict[w] = v['priority']
-    #     while True:
-    #         topCard = max(tempDict, key=tempDict.get)
-    #         print(topCard)
-    #         answer = input()
-    #         if answer in ('', 'y'):
-    #             print(answer)
-    #             self.deck[topCard]['correctRepeat'] += 1
-    #             self.deck[topCard]['priority'] -= self.deck[topCard]['correctRepeat']*2
-    #             tempDict[topCard] = self.deck[topCard]['priority']
-    #         elif answer == 'stop':
-    #             break
-    #         else:
-    #             self.deck[topCard]['wrongRepeat'] += 1
-    #             self.deck[topCard]['priority'] += self.deck[topCard]['wrongRepeat']
-    #             tempDict[topCard] = self.deck[topCard]['priority']
-
     def letsReply(self):
         '''realize respond to card and change priority'''
         answer = ''
@@ -36,7 +15,6 @@ class DeckOfCards:
             topCard = self.deck[topWord]
             answer = input()
             if answer in ('', 'y'):
-                print(answer)
                 topCard['correctRepeat'] += 1
                 topCard['priority'] -= topCard['correctRepeat']*2
             elif answer == 'stop':
@@ -45,7 +23,7 @@ class DeckOfCards:
                 topCard['wrongRepeat'] += 1
                 topCard['priority'] += topCard['wrongRepeat']
 
-    def eatDict(self, dictionary):
+    def eatDict(self, dictionary = {}):
         '''append dictionary to deck'''
         tempDict = {}
         for word, repeat in dictionary.items():
