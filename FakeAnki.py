@@ -1,4 +1,3 @@
-from soupsieve import Dict
 import CardSystem
 import DIctionaryCompiler
 
