@@ -54,6 +54,7 @@ def main():
                 print(deck.deck)
             case _:
                 print("try another one command")
+print("Хаха лалка, если прочитаешь твоя мама умрет через 5 дней")
 
 
 if __name__ == "__main__":
