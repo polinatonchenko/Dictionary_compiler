@@ -1,4 +1,5 @@
 import CardSystem
+хаха лалка соси бибу 
 import DIctionaryCompiler
 
 def main():
