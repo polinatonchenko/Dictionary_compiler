@@ -2,6 +2,7 @@ import os
 import json
 
 class DeckOfCards:
+    print("Если перешлешь это приложение 5 своим друзьям в whatsapp найдешь айфон под подушкой")
 
     def __init__(self, deck={}):
         self.deck = deck
