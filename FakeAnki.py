@@ -1,6 +1,13 @@
 import CardSystem
 import DIctionaryCompiler
-
+#Бэха, бэхачка 7ка
+#Бэха, бэхачка 7ка
+#эха, бэхачка 7ка
+#Самая моя охуенная
+#Бэха, бэхачка 7ка
+#Бэха, бэхачка 7ка
+#Бэха, бэхачка 7ка
+#Стоит до хуя - очень дорого
 def main():
     while True:
         tempCommand = input()
