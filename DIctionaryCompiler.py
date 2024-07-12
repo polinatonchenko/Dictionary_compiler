@@ -2,6 +2,152 @@ import os
 import json
 
 class DictOfWords:
+    using System;
+using System.Windows.Forms;
+
+namespace DZ
+{
+    public partial class Form1 : Form
+    {
+
+        public Form1()
+        {
+            InitializeComponent();
+            comboBox1.Items.AddRange(new string[] { "Сложение", "Вычитание", "Умножение", "Деление", "Целочисленное деление", "Остаток от деления" });
+            comboBox1.SelectedIndex = 0; // Устанавливаем значение по умолчанию
+        }
+
+        private void buttonEquals_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string result = Calculator.Calculate(comboBox1.SelectedItem.ToString(), textBoxNumber1.Text, textBoxNumber2.Text).ToString();
+                textBoxResult.Text = result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            textBoxNumber1.Clear();
+            textBoxNumber2.Clear();
+            textBoxResult.Clear();
+            comboBox1.SelectedIndex = -1;
+        }
+    }
+
+    // Класс калькулятора
+    public class Calculator
+    {
+        // Метод для выполнения арифметических операций
+        public static decimal Calculate(string operation, string number1Text, string number2Text)
+        {
+            // Удаляем пробелы из введенных чисел
+            number1Text = number1Text.Replace(" ", "");
+            number2Text = number2Text.Replace(" ", "");
+
+            // Проверка наличия чисел
+            if (string.IsNullOrWhiteSpace(number1Text) || string.IsNullOrWhiteSpace(number2Text))
+            {
+                throw new ArgumentException("Пожалуйста, введите оба числа.");
+            }
+
+            // Проверка, является ли первое число 25-значным
+            if (number1Text.Length != 25)
+            {
+                throw new ArgumentException("Первое число должно быть 25-значным.");
+            }
+
+            // Преобразование строк в числа
+            BigInt number1 = new BigInt(number1Text);
+            BigInt number2 = new BigInt(number2Text);
+            decimal result = 0;
+
+            // Выбор операции и выполнение соответствующего алгоритма
+            switch (operation)
+            {
+                case "Сложение":
+                    result = number1.Add(number2);
+                    break;
+                case "Вычитание":
+                    result = number1.Subtract(number2);
+                    break;
+                case "Умножение":
+                    result = number1.Multiply(number2);
+                    break;
+                case "Деление":
+                    result = number1.Divide(number2);
+                    break;
+                case "Целочисленное деление":
+                    result = number1.IntegerDivide(number2);
+                    break;
+                case "Остаток от деления":
+                    result = number1.Modulo(number2);
+                    break;
+                default:
+                    throw new ArgumentException("Неизвестная операция.");
+            }
+
+            return result;
+        }
+    }
+
+    // Пользовательский класс для работы с большими числами
+    public class BigInt
+    {
+        private decimal value;
+
+        // Конструктор класса, принимающий строку и преобразующий её в decimal
+        public BigInt(string number)
+        {
+            if (!decimal.TryParse(number, out value))
+            {
+                throw new ArgumentException("Неверный формат числа");
+            }
+        }
+
+        // Методы для выполнения арифметических операций
+        public decimal Add(BigInt other)
+        {
+            return value + other.value;
+        }
+
+        public decimal Subtract(BigInt other)
+        {
+            return value - other.value;
+        }
+
+        public decimal Multiply(BigInt other)
+        {
+            return value * other.value;
+        }
+
+        public decimal Divide(BigInt other)
+        {
+            if (other.value == 0)
+                throw new DivideByZeroException("Деление на ноль");
+            return value / other.value;
+        }
+
+        public decimal IntegerDivide(BigInt other)
+        {
+            if (other.value == 0)
+                throw new DivideByZeroException("Деление на ноль");
+            return Math.Truncate(value / other.value);
+        }
+
+        public decimal Modulo(BigInt other)
+        {
+            if (other.value == 0)
+                throw new DivideByZeroException("Деление на ноль");
+            return value % other.value;
+        }
+    }
+}
+
 
     def __init__(self):
         self.dictionary = {}
